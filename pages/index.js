@@ -1,8 +1,10 @@
 import css from '../styles/style.scss'
+import TodoList from "../components/TodoList";
 
 const Index = () => (
   <div className={css.example}>
-    <p>Hello Next.js</p>
+    <h1>Todo-list</h1>
+    <TodoList />
   </div>
 )
 
