@@ -4,26 +4,33 @@ import TodoListItem from "./TodoListItem";
 import TodoListBtns from "./TodoListBtns";
 
 class TodoList extends React.Component {
+  constructor(props){
+    super(props)
+    this.state={
+      _db : []
+    }
+
+  }
+
+  componentDidMount() {
+    let url = "http://localhost:3000/todos/";
+    fetch(url)
+      .then( response => response.json())
+      .then( data =>{
+        this.setState({
+          _db : data
+        })
+      })
+
+  }
+
   render() {
-    const db = [
-      {
-        id: 0,
-        todo : '운동하기'
-      },
-      {
-        id: 1,
-        todo : '적게먹기'
-      },
-      {
-        id: 2,
-        todo : '물많이마시기'
-      }
-    ]
+    const {_db} = this.state
     return (
       <div style={css.todoListItem}>
         <TodoListForm />
         {
-          db.map((item,index) => (
+          _db.map((item,index) => (
               <TodoListItem key={'todo'+index} item={item} />
             )
           )
