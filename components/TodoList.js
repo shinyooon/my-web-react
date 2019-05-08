@@ -9,7 +9,6 @@ class TodoList extends React.Component {
     this.state={
       _db : []
     }
-
   }
 
   componentDidMount() {
@@ -21,17 +20,16 @@ class TodoList extends React.Component {
           _db : data
         })
       })
-
   }
 
   render() {
     const {_db} = this.state
     return (
-      <div style={css.todoListItem}>
+      <div style={css.todoWrap}>
         <TodoListForm />
         {
           _db.map((item,index) => (
-              <TodoListItem key={'todo'+index} item={item} />
+              <TodoListItem key={'todo'+index} item={item} index={index} />
             )
           )
         }
