@@ -1,4 +1,5 @@
 import css from '../styles/style.scss'
+import axios from "axios";
 
 
 class TodoListItem extends React.Component{
@@ -9,21 +10,17 @@ class TodoListItem extends React.Component{
   componentDidMount(){
 
   }
-  onClick = () => {
-    console.log('click')
-  }
-  deleteItem = (index) => {
-    let url = "http://localhost:3000/todos/";
-
+  deleteItem = async (index) => {
+    await axios.delete(`http://localhost:3000/todos/${index}`);
   }
   render(){
     return (
       <div style={css.todoListItem}>
         <label>
-          <input type="checkbox" id={'todo'+this.props.item.id}/>
-          <span>{this.props.item.todo}</span>
+          <input type="checkbox" />
+          <span>{this.props.data.todo}</span>
         </label>
-        <button onClick={() => this.deleteItem(this.props.index)}>삭제</button>
+        <button onClick={() => this.deleteItem(this.props.data.id)}>삭제</button>
       </div>
     );
   }

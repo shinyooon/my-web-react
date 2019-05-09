@@ -1,11 +1,31 @@
 import css from '../styles/style.scss'
-import TodoList from "../components/TodoList";
+import axios from "axios";
+import TodoListForm from "../components/TodoListForm";
+import TodoListBtns from "../components/TodoListBtns";
+import TodoListItem from "../components/TodoListItem";
 
-const Index = () => (
-  <div className={css.example}>
-    <h1>Todo-list</h1>
-    <TodoList />
-  </div>
-)
+class TodoList extends React.Component {
+  static async getInitialProps ({req}) {
+    const response = await axios.get('http://localhost:3000/todos/');
+    return {
+      data : response.data
+    }
+  }
 
-export default Index
+  render() {
+    const { data } = this.props;
+    return (
+      <div style={css.todoWrap}>
+        <TodoListForm />
+        {
+          data.map((data, index, array) =>
+            <TodoListItem key={'todo' + data.id} data={data} index={index+1} list = { array }/>
+          )
+        }
+        <TodoListBtns />
+      </div>
+    );
+  }
+}
+
+export default TodoList
