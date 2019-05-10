@@ -22,7 +22,7 @@ class TodoListForm extends React.Component {
   }
   render(){
     return(
-      <div style={css.todoListFormWrap}>
+      <div className={css.todoListFormWrap}>
         <p>title 입력</p>
         <input type="text" ref={this.inputRef}
                onKeyPress={(e)=>this.onKeyPress(e)}/>

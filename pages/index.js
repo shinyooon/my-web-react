@@ -14,7 +14,9 @@ class TodoList extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      todoList : this.props.data
+      todoList : this.props.data,
+      idList : this.props.data.map(item => item.id),
+      selectedList : this.props.data.filter(item => item.checked===true).map(item => item.id)
     }
   }
   deleteItem = (index) =>{
@@ -28,19 +30,41 @@ class TodoList extends React.Component {
     })
   }
 
+  changeItem = (index,isChekced) => {
+
+    this.state.todoList[index].checked = isChekced
+    this.setState({
+      selectedList : this.state.todoList.filter(item => item.checked === true).map(item => item.id)
+    })
+  }
+
+  removeAll = () => {
+    this.setState({
+      todoList: []
+    })
+  }
+
+  removeSelected = () => {
+    this.setState({
+      todoList : this.state.todoList.filter( item => {
+        return this.state.selectedList.findIndex( id => id ===item.id) ===-1
+      })
+    })
+ }
+
 
   render() {
-    const { todoList } = this.state;
+    const { todoList,idList,selectedList } = this.state;
     return (
-      <div style={css.todoWrap}>
+      <div className={css.todoWrap}>
         <h1>Todo List</h1>
         <TodoListForm onCreate={this.createItem}/>
         {
           todoList.map((data, index) =>
-            <TodoListItem key={'todo' + data.id} data={data} index={index+1} isChecked = {data.checked} onDelete = {this.deleteItem} />
+            <TodoListItem key={'todo' + data.id} data={data} index={index} isChecked = {data.checked} onDelete = {this.deleteItem} onChange = {this.changeItem} />
           )
         }
-        <TodoListBtns />
+        <TodoListBtns removeAll = {this.removeAll} removeSelected ={this.removeSelected} idList={idList} selectedList={selectedList}/>
       </div>
     );
   }
