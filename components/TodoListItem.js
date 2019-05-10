@@ -1,6 +1,6 @@
 import css from '../styles/style.scss'
 import axios from "axios";
-
+import classNames from 'classnames/bind';
 
 class TodoListItem extends React.Component{
   constructor(props){
@@ -33,11 +33,11 @@ class TodoListItem extends React.Component{
   render(){
     return (
       <div className={css.todoListItem}>
-        <label className={ this.state.checked ? css.isChecked : null  }>
+        <label className={ classNames(css.todoListLabel, this.state.checked ? css.isChecked : '')}>
           <input type="checkbox" defaultChecked={this.props.isChecked}  onChange={(e) => this.changeItem(this.props.data.id, e)}/>
           <span>{this.props.data.todo}</span>
         </label>
-        <button onClick={() => this.deleteItem(this.props.data.id)}>삭제</button>
+        <button className={css.todoListBtnDel} onClick={() => this.deleteItem(this.props.data.id)}>삭제</button>
       </div>
     );
   }

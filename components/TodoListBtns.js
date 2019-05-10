@@ -22,9 +22,9 @@ class TodoListBtns extends React.Component {
   }
   render(){
     return (
-      <div style={css.todoListItem}>
-        <div><button onClick={() => this.removeSelected(this.props.selectedList)}>REMOVE COMPLETED</button></div>
-        <div><button onClick={() => this.removeAll(this.props.idList)}>REMOVE ALL</button></div>
+      <div className={css.todoListBtm}>
+        <div className={css.todoListBtnWrap}><button onClick={() => this.removeSelected(this.props.selectedList)}>REMOVE COMPLETED</button></div>
+        <div className={css.todoListBtnWrap}><button onClick={() => this.removeAll(this.props.idList)}>REMOVE ALL</button></div>
       </div>
     );
   }

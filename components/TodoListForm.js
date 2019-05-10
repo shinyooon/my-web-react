@@ -23,9 +23,8 @@ class TodoListForm extends React.Component {
   render(){
     return(
       <div className={css.todoListFormWrap}>
-        <p>title 입력</p>
-        <input type="text" ref={this.inputRef}
-               onKeyPress={(e)=>this.onKeyPress(e)}/>
+        <p className={css.todoListFormTitle}>TITLE </p>
+        <input className={css.todoListFormInput}  type="text" ref={this.inputRef} onKeyPress={(e)=>this.onKeyPress(e) } placeholder={'Title'} />
       </div>
     )
   }

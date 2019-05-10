@@ -57,7 +57,7 @@ class TodoList extends React.Component {
     const { todoList,idList,selectedList } = this.state;
     return (
       <div className={css.todoWrap}>
-        <h1>Todo List</h1>
+        <h1 className={css.todoListTitle}>Todo List</h1>
         <TodoListForm onCreate={this.createItem}/>
         {
           todoList.map((data, index) =>

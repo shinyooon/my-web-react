@@ -1,13 +1,71 @@
-$font-size : 50px;
-.example{
-  font-size: $font-size
+$color_wh : #fff;
+$color_pointer : #42cddd;
+$color_gray : #ddd;
+$color_l_gray : #ccc;
+body,
+html{
+  margin:0;
+  padding:0;
 }
 .todoWrap{
-
+  padding:15px
+}
+.todoListTitle{
+  text-align:center;
 }
 .todoListItem{
-
+  display:flex;
+  margin:10px 0
 }
 .isChecked {
+  color:$color_l_gray;
   text-decoration: line-through;
+}
+.todoListBtm {
+  display:flex;
+  margin: 0 -5px
+}
+.todoListBtnWrap{
+  flex:1;
+  padding:5px;
+  button{
+    display:block;
+    width:100%;
+    padding:10px;
+    background-color:transparent;
+    border:1px solid $color_gray;
+    border-radius: 5px;
+    cursor: pointer;
+    &:hover{
+      background-color:$color_pointer;
+      color:$color_wh;
+    }
+  }
+}
+.todoListBtnDel{
+  width:50px;
+  background-color:transparent;
+  border:1px solid #ddd;
+  border-radius: 5px;
+  padding:3px 8px;
+  cursor: pointer;
+  &:hover{
+    background-color:#42cddd;
+    color:$color_wh
+  }
+}
+.todoListLabel{
+  flex:1;
+}
+.todoListFormTitle{
+  margin:0 0 5px 0;
+}
+.todoListFormInput{
+  display:block;
+  box-sizing: border-box;
+  width:100%;
+  border:none;
+  border-bottom:1px solid #ddd;
+  padding:10px 7px;
+  font-size:17px;
 }
