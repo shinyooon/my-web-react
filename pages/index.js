@@ -11,15 +11,33 @@ class TodoList extends React.Component {
       data : response.data
     }
   }
+  constructor(props){
+    super(props)
+    this.state = {
+      todoList : this.props.data
+    }
+  }
+  deleteItem = (index) =>{
+    this.setState({
+      todoList: this.state.todoList.filter((data) => data.id!==index)
+    })
+  }
+  createItem =  (data) => {
+     this.setState({
+      todoList: [...this.state.todoList,data]
+    })
+  }
+
 
   render() {
-    const { data } = this.props;
+    const { todoList } = this.state;
     return (
       <div style={css.todoWrap}>
-        <TodoListForm />
+        <h1>Todo List</h1>
+        <TodoListForm onCreate={this.createItem}/>
         {
-          data.map((data, index, array) =>
-            <TodoListItem key={'todo' + data.id} data={data} index={index+1} list = { array }/>
+          todoList.map((data, index) =>
+            <TodoListItem key={'todo' + data.id} data={data} index={index+1} isChecked = {data.checked} onDelete = {this.deleteItem} />
           )
         }
         <TodoListBtns />
